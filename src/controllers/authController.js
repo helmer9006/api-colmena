@@ -60,15 +60,13 @@ export const authenticateUser = async (req, res, next) => {
       specialtyId: userFound.specialtyId,
     });
     userFound.dataValues.token = token;
-    // return firstAccessDoctor to redirect user to change password in frontend
-    // if firstAccessDoctor is false must change password
     if (userFound.firstAccess == false) {
       await userFound.update({ firstAccess: true });
     }
 
     res.json({
       status: true,
-      response: userFound,
+      token: token,
       msg: "Authenticated successfully.",
     });
   } catch (error) {

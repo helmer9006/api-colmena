@@ -19,7 +19,7 @@ npm start
 ```
 
 Open your local browser and verify the test-api-soyyo is working by accessing:  
-`http://localhost:4000/api/users/getAllUsers`  
+`http://localhost:4000/api/users/getAllUsers`
 
 ### 2) create the docker image
 

@@ -11,6 +11,7 @@ export const create = async (req, res) => {
   debugger;
   console.log("POST - CREATE USER");
   try {
+    // throw console.error( 'Error!' );
     //validate error
     const errores = validationResult(req);
     if (!errores.isEmpty()) {
@@ -36,7 +37,7 @@ export const create = async (req, res) => {
       where: { identification },
     });
     if (userReg) {
-      return res.json({
+      return res.status(409).json({
         status: false,
         response: userReg,
         msg: "User already exists",
@@ -60,7 +61,7 @@ export const create = async (req, res) => {
       codeActivation: Math.floor(Math.random() * 1000000 + 1),
     });
     if (!userCreated) {
-      return res.json({
+      return res.status(500).json({
         status: false,
         response: {},
         msg: "could not create user",
@@ -120,14 +121,16 @@ export const getUserById = async (req, res) => {
       where: { id: userId },
     });
     if (!user) {
-      return res.json({ status: true, response: [], msg: "User not found" });
+      return res
+        .status(404)
+        .json({ status: false, response: {}, msg: "User not found" });
     }
     res.json({ status: true, response: user, msg: "User found" });
   } catch (error) {
     console.log(error);
     res
       .status(500)
-      .json({ status: false, response: [], msg: "Error internal server." });
+      .json({ status: false, response: {}, msg: "Error internal server." });
   }
 };
 
@@ -135,9 +138,6 @@ export const getAllUsers = async (req, res) => {
   console.log("GET - ALL USERS");
   try {
     const users = await User.findAll();
-    if (users.length == 0) {
-      return res.json({ status: true, response: [], msg: "Users not found" });
-    }
     res.json({ status: true, response: users, msg: "Users found" });
   } catch (error) {
     console.log(error);
@@ -192,6 +192,7 @@ export const activate = async (req, res) => {
 
 export const changePassword = async (req, res) => {
   try {
+    debugger;
     console.log("PUT - CHANGE PASSWORD");
     //validate error
     const errores = validationResult(req);
@@ -203,15 +204,14 @@ export const changePassword = async (req, res) => {
       });
     }
     const { password, newPassword } = req.body;
-    const {
-      data: { id },
-    } = req.user;
+    console.log("user auth req.user", req.user);
+    const { id } = req.user;
     const userFound = await User.findOne({
       where: { id },
-      attributes: ["id", "password"],
+      // attributes: ["id", "password"],
     });
     if (!userFound) {
-      return res.status(401).json({
+      return res.status(404).json({
         status: false,
         response: {},
         msg: "user not found.",
@@ -231,22 +231,19 @@ export const changePassword = async (req, res) => {
     let passNew = await bcrypt.hash(decodedNewPassword, salt);
     const updatedPass = await userFound.update({ password: passNew });
     if (!updatedPass) {
-      return res.status(401).json({
+      return res.status(404).json({
         status: false,
         response: {},
         msg: "user not updated.",
       });
     }
-    if (
-      userFound.rol == Constants.TYPE_USER.DOCTOR &&
-      updatedPass.firstAccess == false
-    ) {
+    if (updatedPass.firstAccess == false) {
       await userFound.update({ firstAccess: true });
     }
     res.status(200).json({
       status: true,
-      response: updatedPass,
-      msg: "User updated.",
+      response: userFound,
+      msg: "User Update successfully.",
     });
   } catch (error) {
     console.log(error);
@@ -259,7 +256,6 @@ export const changePassword = async (req, res) => {
 export const updateUser = async (req, res) => {
   console.log("PUT - UPDATE USER");
   try {
-    debugger;
     // data user auth
     const { rol, name } = req.user;
 
@@ -269,7 +265,7 @@ export const updateUser = async (req, res) => {
       return res.status(400).json({
         status: false,
         response: {},
-        msg: "Error, incorrect parameters",
+        msg: "Error, parameter id incorrect",
       });
     }
 
@@ -284,7 +280,7 @@ export const updateUser = async (req, res) => {
 
     const foundUser = await User.findOne({ where: { id: userId } });
     if (!foundUser) {
-      return res.status(400).json({
+      return res.status(404).json({
         status: false,
         response: {},
         msg: "User not found",
@@ -342,17 +338,17 @@ export const deleteUserById = async (req, res) => {
       where: { id: userId },
     });
     if (!userFound) {
-      return res.json({
-        status: true,
-        response: [],
-        msg: "Could not delete user",
+      return res.status(400).json({
+        status: false,
+        response: {},
+        msg: "Could not delete user, not found",
       });
     }
     const userDelete = await User.destroy({ where: { id: userId } });
     if (!userDelete) {
-      return res.json({
+      return res.status(500).json({
         status: true,
-        response: [],
+        response: {},
         msg: "Could not delete user",
       });
     }
@@ -365,7 +361,7 @@ export const deleteUserById = async (req, res) => {
     console.log(error);
     res
       .status(500)
-      .json({ status: false, response: [], msg: "Error internal server." });
+      .json({ status: false, response: {}, msg: "Error internal server." });
   }
 };
 
@@ -391,10 +387,7 @@ export const getUserByName = async (req, res) => {
       },
       // logging: console.log,
     });
-    if (!user.length) {
-      return res.json({ status: true, response: [], msg: "User not found" });
-    }
-    res.json({ status: true, response: user, msg: "User found" });
+    res.json({ status: true, response: user, msg: "Users found" });
   } catch (error) {
     console.log(error);
     res

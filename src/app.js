@@ -15,6 +15,7 @@ app.use(cors());
 // routes
 app.use("/public", express.static(`./public`));
 app.use("/api/users", usersRoutes);
+
 app.use("/api/auth", authRoutes);
 
 export default app;
