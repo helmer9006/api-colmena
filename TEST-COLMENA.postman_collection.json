@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "b47c3e9a-3dd3-46bb-99da-028a42854a79",
+		"name": "TEST-COLMENA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6107416"
+	},
+	"item": [
+		{
+			"name": "[Users] - Create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Helmer Villarreal Larios\",\r\n    \"password\": \"MTIzNDU2Nzg5\",\r\n    \"address\": \"calle 100 # 20-34 barranca\",\r\n    \"birthdate\": \"08/06/1990\",\r\n    \"identification\": \"1051635342\",\r\n    \"phone\": \"3013555186\",\r\n    \"email\": \"helmervillarreal@gmail.com\",\r\n    \"rol\": \"standard\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Auth] - Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"identification\":\"1051635340\",\r\n    \"password\":\"MTIzNDU2Nzg5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Users] - Get user by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiSGVsbWVyIFZpbGxhcnJlYWwgTGFyaW9zIFVwZGF0ZSIsImNvZGVBY3RpdmF0aW9uIjoiNDcyMjE5Iiwicm9sIjoiYWRtaW4iLCJpZGVudGlmaWNhdGlvbiI6IjEwNTE2MzUzNDAiLCJhY3RpdmUiOnRydWUsImVtYWlsIjoiaGVsbWVydmlsbGFycmVhbEBnbWFpbC5jb20ifSwiaWF0IjoxNjgxNjkwMTg1LCJleHAiOjE2ODE3MTg5ODV9.5KlNJW47KH6EoKpSCIzXcDKEnwf4AKWsQ1zsRF5Dur8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/getById/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"getById",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Users] - Update by id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiSGVsbWVyIFZpbGxhcnJlYWwgTGFyaW9zIFVwZGF0ZSIsImNvZGVBY3RpdmF0aW9uIjoiNDcyMjE5Iiwicm9sIjoiYWRtaW4iLCJpZGVudGlmaWNhdGlvbiI6IjEwNTE2MzUzNDAiLCJhY3RpdmUiOnRydWUsImVtYWlsIjoiaGVsbWVydmlsbGFycmVhbEBnbWFpbC5jb20ifSwiaWF0IjoxNjgxNjk2NTI3LCJleHAiOjE2ODE3MjUzMjd9.P-yN-kLtsJTrv5RbfgHt9XN_HvSHR0c39YB5ikaB7as",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Helmer Villarreal Larios Update\",\r\n    \"password\": \"MTIzNDU2Nzg5\", \r\n    \"address\": \"calle 100 # 20-34 barranca\",\r\n    \"birthdate\": \"08/06/1990\",\r\n    \"identification\": \"1051635340\",\r\n    \"phone\": \"3013555186\",\r\n    \"email\": \"helmervillarreal@gmail.com\",\r\n    \"rol\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/update/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"update",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Users] - Delete user by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiSGVsbWVyIFZpbGxhcnJlYWwgTGFyaW9zIFVwZGF0ZSIsImNvZGVBY3RpdmF0aW9uIjoiNDcyMjE5Iiwicm9sIjoiYWRtaW4iLCJpZGVudGlmaWNhdGlvbiI6IjEwNTE2MzUzNDAiLCJhY3RpdmUiOnRydWUsImVtYWlsIjoiaGVsbWVydmlsbGFycmVhbEBnbWFpbC5jb20ifSwiaWF0IjoxNjgxNjk2NTI3LCJleHAiOjE2ODE3MjUzMjd9.P-yN-kLtsJTrv5RbfgHt9XN_HvSHR0c39YB5ikaB7as",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/users/deleteById/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"deleteById",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Users] - Get all users",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiSGVsbWVyIFZpbGxhcnJlYWwgTGFyaW9zIiwiY29kZUFjdGl2YXRpb24iOiI1MDIzMDUiLCJyb2wiOiJhZG1pbiIsImlkZW50aWZpY2F0aW9uIjoiMTA1MTYzNTM0MCIsImFjdGl2ZSI6dHJ1ZSwiZW1haWwiOiJoZWxtZXJ2aWxsYXJyZWFsQGdtYWlsLmNvbSJ9LCJpYXQiOjE2ODE1OTQyNDUsImV4cCI6MTY4MTYyMzA0NX0.uiHeIM9sKf2-NoA-p9n0XvCZZ10bABqM1sB29khOrvE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users/getAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"getAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[Users] - Get user by name",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoyLCJuYW1lIjoiSGVsbWVyIFZpbGxhcnJlYWwgTGFyaW9zIHVwIiwiY29kZUFjdGl2YXRpb24iOiI0NzIyMTkiLCJyb2wiOiJhZG1pbiIsImlkZW50aWZpY2F0aW9uIjoiMTA1MTYzNTM0MCIsImFjdGl2ZSI6dHJ1ZSwiZW1haWwiOiJoZWxtZXJ2aWxsYXJyZWFsQGdtYWlsLmNvbSJ9LCJpYXQiOjE2ODE2NjA0MDAsImV4cCI6MTY4MTY4OTIwMH0.a0bbeWf47BCTUaHPxuMF8hgTntSQZRoP_GI6HbUh7mI",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:4000/api/users/getbyName/helmer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"users",
+						"getbyName",
+						"helmer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

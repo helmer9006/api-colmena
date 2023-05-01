@@ -1,7 +1,6 @@
 import { getTokenData } from "../config/jwt.config.js";
 
 export const auth = (req, res, next) => {
-  debugger;
   console.log("POST - AUTENTICATION");
   const authHeader = req.get("Authorization");
   if (!authHeader) {
@@ -18,7 +17,7 @@ export const auth = (req, res, next) => {
   }
   // verify token
   try {
-    getTokenData;
+    // getTokenData;
     const user = getTokenData(token);
     req.user = user.user;
   } catch (error) {
