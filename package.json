@@ -8,6 +8,7 @@
     "dev": "nodemon ./src/index.js",
     "startDeb": "node --inspect ./src/index.js",
     "start": "node ./src/index.js",
+    "build": "echo \"Error: no test specified\"",
     "test": "jest",
     "test-watchall": "jest --watchAll --detectOpenHandles"
   },
