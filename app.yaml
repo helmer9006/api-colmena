@@ -1,10 +1,9 @@
-runtime: nodejs
+runtime: nodejs14
 handlers:
 #serve all static files with utls ending with a file extension
--url: /(.*\..+)$
-statis_files: dist/(.*\..+)$
+- url: /(.*\..+)$
+  statis_files: dist/(.*\..+)$
 #catch alll handler to index.thml
--url: /.*
+- url: /.*
   static_files: dist/index.html
   upload: dist/index.html
-  
