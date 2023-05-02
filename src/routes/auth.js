@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { check } from "express-validator";
+import expressValidator from "express-validator";
 import { Constants } from "../constants/constants.js";
 import { authenticateUser } from "../controllers/authController.js";
+const { check } = expressValidator;
 const router = Router();
 
 //SCHEMAS

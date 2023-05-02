@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { check } from "express-validator";
+import expressValidator from "express-validator";
 import { Constants } from "../constants/constants.js";
 import {
   getAllUsers,
@@ -12,7 +12,7 @@ import {
   getUserByName,
 } from "../controllers/UserController.js";
 import { auth } from "./../middleware/auth.js";
-
+const { check } = expressValidator;
 const router = Router();
 
 /**
