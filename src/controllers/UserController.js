@@ -1,6 +1,8 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
-import { validationResult } from "express-validator";
+import expressValidator from "express-validator";
+
+const { validationResult } = expressValidator;
 import { Op, where } from "sequelize";
 import { Constants } from "../constants/constants.js";
 import fs from "fs";

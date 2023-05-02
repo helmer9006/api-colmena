@@ -1,9 +1,10 @@
 import { User } from "../models/User.js";
-import { validationResult } from "express-validator";
+import expressValidator from "express-validator";
+
+const { validationResult } = expressValidator;
 import bcrypt from "bcrypt";
 import { getToken } from "../config/jwt.config.js";
 import { Op } from "sequelize";
-
 
 // method of autentication
 export const authenticateUser = async (req, res, next) => {
