@@ -1,4 +1,4 @@
-import { Router } from "express";
+import express from "express";
 import expressValidator from "express-validator";
 import { Constants } from "../constants/constants.js";
 import {
@@ -13,6 +13,7 @@ import {
 } from "../controllers/UserController.js";
 import { auth } from "./../middleware/auth.js";
 const { check } = expressValidator;
+const { Router } = express;
 const router = Router();
 
 /**
