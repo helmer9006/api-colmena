@@ -8,9 +8,13 @@
     "dev": "nodemon ./src/index.js",
     "startDeb": "node --inspect ./src/index.js",
     "start": "node ./src/index.js",
-    "build": "echo \"Error: no test specified\"",
+    "build": "",
     "test": "jest",
-    "test-watchall": "jest --watchAll --detectOpenHandles"
+    "test-watchall": "jest --watchAll --detectOpenHandles",
+    "gcp-build": ""
+  },
+  "engines": {
+    "node": "14.20.1"
   },
   "author": "Helmer Villarreal",
   "license": "ISC",

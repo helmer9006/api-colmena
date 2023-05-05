@@ -1,2 +1,4 @@
 runtime: nodejs14
 env: flex
+build_env_variables:
+  GOOGLE_NODE_RUN_SCRIPTS: ""
