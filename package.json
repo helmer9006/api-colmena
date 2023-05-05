@@ -13,9 +13,6 @@
     "test-watchall": "jest --watchAll --detectOpenHandles",
     "gcp-build": ""
   },
-  "engines": {
-    "node": "14.20.1"
-  },
   "author": "Helmer Villarreal",
   "license": "ISC",
   "dependencies": {
